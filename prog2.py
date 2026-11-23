@@ -3,7 +3,7 @@
 
 def alphabeta(level, pos, alpha, beta, isMax):
 
-    if level == 3:
+    if level == depth:
         return values[pos]
 
     if isMax:
@@ -19,8 +19,6 @@ def alphabeta(level, pos, alpha, beta, isMax):
             if alpha >= beta:
                 break
 
-        return best
-
     else:
         best = 999
 
@@ -34,11 +32,19 @@ def alphabeta(level, pos, alpha, beta, isMax):
             if alpha >= beta:
                 break
 
-        return best
+    return best
 
 
-# Input leaf node values
-values = list(map(int, input("Enter 8 leaf values: ").split()))
+# Input leaf values
+values = list(map(int, input("Enter leaf values: ").split()))
+
+# Calculate depth automatically
+depth = 0
+n = len(values)
+
+while n > 1:
+    n = n // 2
+    depth += 1
 
 result = alphabeta(0, 0, -999, 999, True)
 
